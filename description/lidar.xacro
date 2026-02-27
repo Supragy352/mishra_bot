@@ -1,12 +1,17 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 
+
+    <!-- Joint for the Lidar, fixed until its changing -->
     <joint name="laser_joint" type="fixed">
         <parent link="chassis"/>
         <child link="laser_frame"/>
         <origin xyz="0.1 0 0.175" rpy="0 0 0"/>
     </joint>
 
+
+
+    <!-- Link for the actual lidar viz -->
     <link name="laser_frame">
         <visual>
             <geometry>
@@ -24,7 +29,11 @@
         </xacro:inertial_cylinder>
     </link>
 
+
+
+    <!-- Gazebo stuff -->
     <gazebo reference="laser_frame">
+        <!-- Simulatefd Sensors -->
         <sensor name="name" type="ray">
             <pose> 0 0 0 0 0 0 </pose>
             <visualize>true</visualize>
@@ -33,18 +42,21 @@
                 <scan>
                     <horizontal>
                         <samples>512</samples>
-                        <resolution>1</resolution>
+                        <!-- <resolution>1</resolution> Not used -->
                         <min_angle>-3.14</min_angle>
                         <max_angle>3.14</max_angle>
                     </horizontal>
                 </scan>
                 <range>
-                        <min>0.3</min>
-                        <max>12</max>
+                        <min>0.1</min>
+                        <max>7</max>
+                        <!-- <resolution>1</resolution> Not used -->
                 </range>
             </ray>
             <plugin name="laser_controller" filename="libgazebo_ros_ray_sensor.so">
                 <ros>
+                    <!-- Had an error with the argument tag -->
+                    <!-- <argument>~/out:=scan</argument> -->
                     <namespace>/</namespace>
                     <remapping>~/scan:=scan</remapping>
                 </ros>
