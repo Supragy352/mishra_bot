@@ -33,8 +33,9 @@
 
     <!-- Gazebo stuff -->
     <gazebo reference="laser_frame">
+        <material>Gazebo/Red</material>
         <!-- Simulatefd Sensors -->
-        <sensor name="name" type="ray">
+        <sensor name="lidar" type="ray">
             <pose> 0 0 0 0 0 0 </pose>
             <visualize>true</visualize>
             <update_rate>200</update_rate>
@@ -56,9 +57,9 @@
             <plugin name="laser_controller" filename="libgazebo_ros_ray_sensor.so">
                 <ros>
                     <!-- Had an error with the argument tag -->
-                    <!-- <argument>~/out:=scan</argument> -->
-                    <namespace>/</namespace>
-                    <remapping>~/scan:=scan</remapping>
+                    <argument>~/out:=scan</argument>
+                    <!-- <namespace>/</namespace> -->
+                    <!-- <remapping>~/scan:=scan</remapping> -->
                 </ros>
                 <output_type>sensor_msgs/LaserScan</output_type>
                 <frame_name>laser_frame</frame_name>
