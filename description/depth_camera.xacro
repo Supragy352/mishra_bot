@@ -19,8 +19,6 @@
         </visual>
     </link>
 
-
-
     <!-- Camera Optical -->
     <joint name="camera_optical_joint" type="fixed">
         <parent link="camera_link"/>
@@ -29,7 +27,6 @@
     </joint>
 
     <link name="camera_link_optical"></link>
-
 
     <!-- Gazebo stuff -->
     <gazebo reference="camera_link">
